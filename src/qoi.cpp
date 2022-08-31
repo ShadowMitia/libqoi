@@ -45,7 +45,7 @@ std::uint32_t read_4_be_bytes(std::vector<unsigned char> const& bytes, std::size
 constexpr std::uint32_t pixel_hash(RGBA const& pix) noexcept { return (pix.r * 3 + pix.g * 5 + pix.b * 7 + pix.a * 11); };
 
 bool is_valid(const std::vector<unsigned char>& bytes) noexcept {
-    if (bytes.size() < qoi::HEADER_SIZE) {
+    if (bytes.size() < qoi::HEADER_SIZE + qoi::END_MARKER_LENGTH) {
         return false;
     }
 

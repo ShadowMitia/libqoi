@@ -49,11 +49,10 @@ bool is_valid(const std::vector<unsigned char>& bytes) noexcept {
         return false;
     }
 
-    if (bytes[0] != QOI_MAGIC[0] and bytes[1] != QOI_MAGIC[1] and bytes[2] != QOI_MAGIC[3]) {
-        return false;
-    }
-
-    return true;
+    return bytes[0] == QOI_MAGIC[0] and 
+		   bytes[1] == QOI_MAGIC[1] and 
+		   bytes[2] == QOI_MAGIC[2] and
+		   bytes[3] == QOI_MAGIC[3];
 }
 
 header get_header(std::vector<unsigned char> const& image_to_decode) {

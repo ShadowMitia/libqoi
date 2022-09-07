@@ -23,7 +23,7 @@ TEST_CASE("Header : get_header", "[header]") {
   REQUIRE(head.colorspace == 0);  
 }
 
-TEST_CASE("Header : is_valid", "[header]") {
+TEST_CASE("Header : invalid magic bytes", "[header]") {
   std::vector<unsigned char> test_header{0x71, 0x6f, 0x69, 0x65, 0x00, 0x00, 0x03, 0x00, 0x0, 0x0, 0x2, 0x0, 0x3, 0x0, 0xfe, 0x74};
 
   REQUIRE(qoi::is_valid(test_header) == false); 

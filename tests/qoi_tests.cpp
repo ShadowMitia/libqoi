@@ -29,6 +29,12 @@ TEST_CASE("Header : is_valid", "[header]") {
   REQUIRE(qoi::is_valid(test_header) == false); 
 }
 
+TEST_CASE("Padding : truncat", "[padding]") {
+    std::vector<unsigned char> test_header{0x71, 0x6f, 0x69, 0x66, 0x00, 0x00, 0x03, 0x00, 0x0, 0x0, 0x2, 0x0, 0x3, 0x0, 0xfe};
+
+    REQUIRE(qoi::is_valid(test_header) == false);
+}
+
 TEST_CASE("Decode dice.qoi", "[decode]") {
 
   const std::string ref_img = "qoi_test_images/dice.png";

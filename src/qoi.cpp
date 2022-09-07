@@ -45,11 +45,15 @@ std::uint32_t read_4_be_bytes(std::vector<unsigned char> const& bytes, std::size
 constexpr std::uint32_t pixel_hash(RGBA const& pix) noexcept { return (pix.r * 3 + pix.g * 5 + pix.b * 7 + pix.a * 11); };
 
 bool is_valid(const std::vector<unsigned char>& bytes) noexcept {
-    if (bytes.size() < qoi::HEADER_SIZE) {
+    if (bytes.size() < qoi::HEADER_SIZE + qoi::END_MARKER_LENGTH) {
         return false;
     }
 
-    if (bytes[0] != QOI_MAGIC[0] and bytes[1] != QOI_MAGIC[1] and bytes[2] != QOI_MAGIC[3]) {
+    if (not std::equal(QOI_MAGIC.begin(), QOI_MAGIC.end(), bytes.begin())) {
+        return false;
+    }
+
+	if (not std::equal(padding.rbegin(), padding.rend(), bytes.rbegin())) {
         return false;
     }
 

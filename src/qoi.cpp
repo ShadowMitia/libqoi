@@ -49,11 +49,13 @@ bool is_valid(const std::vector<unsigned char>& bytes) noexcept {
         return false;
     }
 
-    if (not std::equal(QOI_MAGIC.begin(), QOI_MAGIC.end(), bytes.begin()))
+    if (not std::equal(QOI_MAGIC.begin(), QOI_MAGIC.end(), bytes.begin())) {
         return false;
+    }
 
-	if (not std::equal(padding.rbegin(), padding.rend(), bytes.rbegin()))
+	if (not std::equal(padding.rbegin(), padding.rend(), bytes.rbegin())) {
         return false;
+    }
 
     return true;
 }
